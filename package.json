@@ -1,0 +1,44 @@
+{
+  "name": "cloudflare-sywo-mcp-server",
+  "version": "1.0.8",
+  "description": "MCP server for querying Cloudflare D1 databases",
+  "main": "dist/index.js",
+  "bin": {
+    "cloudflare-sywo-mcp": "bin/cloudflare-sywo-mcp.cmd"
+  },
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts",
+    "prepublishOnly": "npm run build",
+    "prepublish": "npm run build && npm run security-check",
+    "security-check": "node -e \"if(require('fs').existsSync('.env')){console.error('ERROR: .env file detected! Remove before publishing.');process.exit(1)}\""
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "cloudflare",
+    "d1",
+    "database",
+    "server"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/seek-your-way-out/cloudflare-sywo-mcp-server.git"
+  },
+  "type": "module",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.18.2",
+    "commander": "^14.0.1",
+    "dotenv": "^17.2.2",
+    "node-fetch": "^3.3.2",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.5.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
